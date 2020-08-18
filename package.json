@@ -1,0 +1,19 @@
+{
+  "name": "gulp-lint-jsdocs",
+  "version": "1.0.0",
+  "description": "This is a Typescript project having a development setup of common dev dependecies and things for unit testing",
+  "main": "App.js",
+  "scripts": {
+    "test": "gulp start",
+    "start": "tsc && node Src/Dist/App.js",
+    "tsc": "tsc"
+  },
+  "author": "Adeel Zammit",
+  "license": "ISC",
+  "devDependencies": {
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
+    "tslint": "^6.1.3",
+    "typescript": "^3.9.7"
+  }
+}

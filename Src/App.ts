@@ -1,5 +1,5 @@
 console.log('test');
-const envConf = require('dotenv').config({ path: './env/default.env' });
+const envConf = require('dotenv').config({ path: './Src/Env/default.env' });
 
 if (envConf.error)
 {

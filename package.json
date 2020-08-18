@@ -5,16 +5,22 @@
   "main": "App.js",
   "scripts": {
     "test": "gulp start",
-    "start": "tsc && node Src/Dist/App.js",
-    "tsc": "tsc"
+    "start": "tsc && node Src/Dist/Src/App.js",
+    "tsc": "tsc",
+    "tests": "node ./node_modules/ava/cli.js ./Test/*.test.ts",
+    "tests-pretty": "node ./node_modules/ava/cli.js Test/*.test.ts --verbose"
   },
   "author": "Adeel Zammit",
   "license": "ISC",
   "devDependencies": {
+    "ava": "^3.11.1",
     "del": "^5.1.0",
     "dotenv": "^8.2.0",
     "gulp": "^4.0.2",
     "tslint": "^6.1.3",
     "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "axios": "^0.19.2"
   }
 }

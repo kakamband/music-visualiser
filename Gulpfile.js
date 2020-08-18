@@ -173,22 +173,62 @@ gulp.task(`jsdoc`, (done) => {
 /*------------------------------------------------- Testing tasks ----------------------------------------------------------*/
 /*AVA */
 /* for AVA */
+const _AVA_ = `node ./node_modules/ava/cli.js`;
+let _TestCommand_ = _AVA_; /* AVA is a testing framework */
+
+
+/** If error exists, exit the process with failure status/code
+ * 
+ * @param {String} error - Error text to pass
+ */
+const ProcessExitCode1 = (error = null) => {
+    if (error)
+    {
+        console.error(`exec error: ${error}`);
+        process.exit(1);
+    }
+};
+
+
+/**----------------------------------------------------------------------------------------------------------------------
+* Runs all test gulp tasks with specific command
+*
+* @param {object} done
+* @param {string} command - command to run the series of tasks
+* @return {object}  - the return of gulp series function
+*/
+const runAllTestGulpTasks = (done, command) => {
+    _TestCommand_ = command;
+    return (gulp.series(
+        "ava",
+    ))(done);
+};
+
+/**----------------------------------------------------------------------------------------------------------------------
+* Executes test, throws error when test fails
+*
+* @param {object} done
+* @param {string} testPath - path to the test files
+*/
 const execTests = (done, testPath) => {
     const avaTestPath = (testPath instanceof Array) ?
-        testPath.map((aPath) => TestPath(aPath)).reduce((aPath, aCurrent) => aPath += ` ${aCurrent}`) :
-        TestPath(testPath)
+        testPath.map((aPath) => testPath.reduce((aPath, aCurrent) => aPath += ` ${aCurrent}`)) : /*if we gave an array */
+        testPath;
 
     child_proc.exec(`${_TestCommand_} ${avaTestPath}`, {}, (error, sout, serr) => {
         serr && console.error(serr);
         ProcessExitCode1(error);
         done(error);
     }).stdout.pipe(process.stdout);
+    done();
 };
 
 
 
 
-
+gulp.task("ava", done => {
+    execTests(done, `./Src/Dist/Test/**`);
+});
 
 
 

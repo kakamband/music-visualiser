@@ -131,6 +131,7 @@ gulp.task("start", (done) => {
         console.log("SIGINT triggered.\n*** Maybe shown twice because it exits both gulp child_process and the app***");
         // This traps SIGINT inside the exec and does not cause it to call process.exit(),
         // but instead calls process.exit(1) on App.ts
+        process.exit(0);
     });
     done();
 });  
@@ -150,7 +151,7 @@ gulp.task('build', gulp.series(
     tslint --init
 */
 gulp.task(`tslint`, (done) => {
-    child_proc.exec(`tslint ${SrcPath('/**')}`, {maxBuffer: 1024 * 1024000}, (error, sout, serr) => {
+    child_proc.exec(`tslint ${SrcPath('/**/*.ts')}`, {maxBuffer: 1024 * 1024000}, (error, sout, serr) => {
         serr && console.error(serr);
     }).stdout.pipe(process.stdout); /* pipes it to stdout */
     done();

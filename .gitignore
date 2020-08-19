@@ -2,3 +2,5 @@ node_modules
 /Src/Env/*
 /Src/Env/*.env
 /jsDocs/*
+Src/Config/*
+/proximaNotes.md

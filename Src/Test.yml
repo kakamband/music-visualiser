@@ -1,0 +1,164 @@
+#NOTES
+# Whitespace is part of YAML’s formatting. Unless otherwise indicated, newlines indicate the end of a field
+# You structure a YAML document with indentation. The indentation level can be one or more spaces. The specification forbids tabs because tools treat them differently.
+# Values in YAML’s key-value pairs are scalar. They act like the scalar types in languages like Perl, Javascript, and Python. It’s usually good enough to enclose strings in quotes, leave numbers unquoted, and let the parser figure it out.
+---  #indicates the start of the document. YAML can support multiple documents so this acts like a delimiter
+meta         :
+             copyright   : "Copyright (c) {{COPYRIGHT_YEAR}} Proxima Capital"
+             mode        : {{ENV__MODE}}
+             decimals    : 18
+             name        : Aqueduct
+             startTime   : "{{START_TIME}}"
+             version     : 0.0.0.2
+logging      :
+             # Dump config to log output on startup
+             logOnStartup    : false
+             logToFile       : true
+             additionalFiles :
+                             datePattern: yyyy-MM-dd-hh
+                             warnings:
+                                    filename    : warn.log
+                                    level       : WARN
+                             errors:
+                                    filename    : error.log
+                                    level       : ERROR
+                             trace:
+                                    filename    : trace.log
+                                    level       : TRACE
+                             event:
+                                    filename    : event.log
+                                    level       : EVENT
+             filename        : console.log
+             level           : {{ENV__LOGGING_LEVEL}}
+             appenders       : [ "console" ]
+             logLineAndFile  : false
+             pattern         :
+                             console      : "%d{ISO8601_WITH_TZ_OFFSET} | %c | %z | %12x{className} | %[%5.5p%] | %m"
+                             standard     : "%d{ISO8601_WITH_TZ_OFFSET} | %c | %z | %12x{className} | %5.5p | %m"
+NATS         :
+             connection      :
+                             DEV   :
+                                   host     : localhost
+                                   port     : 4222
+                                   protocol : nats
+
+                             PROD  :
+                                   host     : natsio
+                                   port     : 4222
+                                   protocol : nats
+paths        :
+             root : {{ROOT_PATH}}
+             log  : {{ROOT_PATH}}/../../Logs/
+lag          :
+             maxCounter  : {{ENV__LAG_MAX_COUNTER}} # throws an error if counter > this
+             idle        : 10000 # (MS) resets counter if lag > this
+             log         : {{ENV__LAG_LOG}} # (MS) logs if lag  > this
+             threshold   : 800 # (MS) increments counter if lag > this
+memoryUsage  :
+             enabled     : true
+             interval    : 60000 # interval of logging memory usage in ms
+analytics    :
+             balance     :
+                         updateInterval:  600000      # 10 mins in ms
+                         checkInterval:   1000        # 1 sec in ms
+                         maxTimeout:      120000      # 2 mins in ms
+event        :
+             enabled     : {{ENV__XCHG_EVENT_ENABLED}}
+             kinesis     :
+                         accessKeyId      : {{ENV__XCHG_EVENT_KINESIS_KEY}}
+                         secretAccessKey  : {{ENV__XCHG_EVENT_KINESIS_SEC_KEY}}
+                         partitionKey     : {{ENV__XCHG_EVENT_KINESIS_PART_KEY}}
+                         region           : {{ENV__XCHG_EVENT_KINESIS_REGION}}
+                         streams          :
+                                          fill              : AqueductProductionEvents
+                                          tradeLink         : TradelinkEvents
+                                          wallet            : ExchangeBalances
+                                          capitalAllocation : CapitalAllocationEvents
+             firehose    :
+                         accessKeyId      : {{ENV__XCHG_EVENT_FIREHOSE_KEY}}
+                         secretAccessKey  : {{ENV__XCHG_EVENT_FIREHOSE_SEC_KEY}}
+                         region           : {{ENV__XCHG_EVENT_FIREHOSE_REGION}}
+                         streams          :
+request      :
+             maxRetry                     : 20
+             responseTimeThreshold        : 5000 #in MS; displays warning if exceeded; 0 to not check
+strategy     :
+             assetUtilization   : {{ ENV__ASSET_UTILIZATION }}
+             feeBuffer          : 2 # Percent
+             vnr                : #Strategy 1 (my interest)
+                                DEV   :
+                                      venueName   : Binance
+                                PROD  :
+                                      venueName   : Binance
+             mm                 : # strategy 2 (my interest)
+                                orderErrorCount   : 10 # for max limit order error count
+                                retry :
+                                      buffer      : 750 # in MS
+                                      maxCount    : 3
+                                DEV   :
+                                      checks      :
+                                                  deadBand        : 20 # BP; value to check must be < this
+                                                  maxProfit       : 40 # BP; value to check must be < this
+                                                  minProfit       : 0  # BP; value to check must be > this
+                                                  sweepQuantity   : # value to check must be > quantity
+                                                                  - base        : ETH
+                                                                    quantity    : 0
+                                      startup     :
+#                                                  - venueName   : OceanEx
+#                                                    symbolIds   :
+#                                                                - ETH/BTC
+#                                                                - ETH/USDT
+                                                  - venueName   : CryptoCom
+                                                    symbolIds   :
+                                                                - BTC/USDT
+#                                                  - venueName   : Probit
+#                                                    symbolIds   :
+#                                                                - ETH/BTC
+#                                                                - ETH/USDT
+                                                  - venueName   : Bitmart
+                                                    symbolIds   :
+                                                                - ETH/BTC
+                                PROD  :
+                                      checks      :
+                                                  deadBand        : 20 # BP; value to check must be < this
+                                                  maxProfit       : 100 # BP; value to check must be < this
+                                                  minProfit       : 0  # BP; value to check must be > this
+                                                  sweepQuantity   : # value to check must be > quantity
+                                                                  - base        : ETH
+                                                                    quantity    : 5
+                                      startup:
+                                                  - venueName   : Bitmart
+                                                    symbolIds   :
+                                                                - ETH/BTC
+                                                                - LINK/BTC
+                                                                - XRP/BTC
+                                                  - venueName   : CryptoCom
+                                                    symbolIds   :
+                                                                - ETH/BTC
+                                                                - XRP/BTC
+                                                                - EOS/BTC
+                                                                - LTC/BTC
+                                                                - BTC/USDT
+                                                                - ETH/USDT
+                                                                - XRP/USDT
+                                                                - EOS/USDT
+                                                                - LTC/USDT
+                                                                - LINK/USDT
+                                                  - venueName   : OceanEx
+                                                    symbolIds   :
+                                                                - ETH/BTC
+                                                                #- BTC/USDT
+                                                                #- ETH/USDT
+                                                                - LINK/USDT
+                                                                - BAT/USDT
+                                                                - XRP/USDT
+                                                            #     - LTC/USDT
+                                                            #     - EOS/BTC
+                                                            #     - EOS/USDT
+                                                  - venueName   : Probit
+                                                    symbolIds   :
+                                                                - ETH/BTC
+                                                                #- ETH/USDT
+                                                                #- XRP/USDT
+
+

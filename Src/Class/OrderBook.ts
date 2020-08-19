@@ -29,10 +29,10 @@ export default class OrderBook {
   }
 
   /* getters and setters */
-  public getLastUpdateId(): number {
+  public get LastUpdateId(): number { 
     return this.lastUpdateId;
   }
-  public setLastUpdateId(id: number) {
+  public set LastUpdateId(id: number) {
     this.lastUpdateId = id;
   }
 

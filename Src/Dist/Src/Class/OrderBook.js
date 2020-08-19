@@ -21,10 +21,10 @@ class OrderBook {
         });
     }
     /* getters and setters */
-    getLastUpdateId() {
+    get LastUpdateId() {
         return this.lastUpdateId;
     }
-    setLastUpdateId(id) {
+    set LastUpdateId(id) {
         this.lastUpdateId = id;
     }
     /* user functions */

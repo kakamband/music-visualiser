@@ -64,7 +64,9 @@ process.nextTick(()=>{
 
 });
 
-
+/* setImmediate() - triggers just right of the start of the next tick */
+/* process.nextTick() - triggers just at the end of the current tick */
+/* In proper order, it should be process.nextTick() and then setImmediate() */
 
 export {bigIntSum, normalSum} ;
 

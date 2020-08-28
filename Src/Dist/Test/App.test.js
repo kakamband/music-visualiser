@@ -5,13 +5,13 @@ const ava_1 = require("ava");
 const App_1 = require("../Src/App");
 /* ava testing is essentially like model checking or an abstracted version of formal software engineering */
 ava_1.default('Test1: check if bitIntSum gives exepected output of the bigIntSum', t => {
-    t.plan(1);
+    t.plan(2);
     t.pass('(Test1: passed)');
-    t.is(App_1.bigIntSum(4n), BigInt(Number.MAX_SAFE_INTEGER));
+    t.is(App_1.bigIntSum(0n), BigInt(Number.MAX_SAFE_INTEGER));
 });
 ava_1.default('Test2: check if normal sum works', t => {
     t.plan(2);
-    t.is(App_1.normalSum(1, 2), 24);
+    t.is(App_1.normalSum(1, 2), 3);
     t.pass('(Test2: passed)');
 });
 /*

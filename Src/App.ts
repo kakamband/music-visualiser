@@ -1,7 +1,7 @@
 import OrderBook from "./Class/OrderBook";
 import { yamlTest } from "./yamlExample";
 import {NumberSumEvent, Quotient} from './Class/NumberSumEvent';
-
+import { LinkedList } from './Class/LinkedList'
 
 
 // process.stdout.write(`Test\n`);
@@ -40,6 +40,8 @@ myNumberEvent.on(`intLimit`, () => {
     myNumberEvent.setNumerator(0n);
 });
 
+const testList :LinkedList<bigint>  = new LinkedList<bigint>();
+
 const startTime: Date = new Date();
 const timerObj: ReturnType<typeof setInterval> = setInterval(() => {
     const timeNow: Date = new Date();
@@ -48,6 +50,9 @@ const timerObj: ReturnType<typeof setInterval> = setInterval(() => {
     let currentNumerator = myNumberEvent.getNumerator();
     myNumberEvent.setNumerator(currentNumerator + 1n);
     let res: bigint = myNumberEvent.remainderCalculation();
+
+    testList.addToList(res);
+
     if (res === 0n) 
     {
         myNumberEvent.emit(`modulo`);
@@ -57,11 +62,17 @@ const timerObj: ReturnType<typeof setInterval> = setInterval(() => {
     {
         myNumberEvent.emit(`intLimit`);
     }
-}, 0);
+
+    
+}, 1000);
+
 
 
 process.nextTick(()=>{
-
+    const timerObj: ReturnType<typeof setInterval> = setInterval(() => {
+        process.stdout.write(`Process nextTick\n`);
+        testList.printList();
+    }, 1000);
 });
 
 /* setImmediate() - triggers just right of the start of the next tick */

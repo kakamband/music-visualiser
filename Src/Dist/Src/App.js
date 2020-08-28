@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.normalSum = exports.bigIntSum = void 0;
 const NumberSumEvent_1 = require("./Class/NumberSumEvent");
+const LinkedList_1 = require("./Class/LinkedList");
 // process.stdout.write(`Test\n`);
 /* dotenv api allows you to refer to environment variables that you made */
 const envConf = require('dotenv').config({ path: './Src/Env/default.env' });
@@ -26,6 +27,7 @@ myNumberEvent.on(`intLimit`, () => {
     process.stdout.write(`Reached the integer limit! Resetting to 0 \n`);
     myNumberEvent.setNumerator(0n);
 });
+const testList = new LinkedList_1.LinkedList();
 const startTime = new Date();
 const timerObj = setInterval(() => {
     const timeNow = new Date();
@@ -34,14 +36,19 @@ const timerObj = setInterval(() => {
     let currentNumerator = myNumberEvent.getNumerator();
     myNumberEvent.setNumerator(currentNumerator + 1n);
     let res = myNumberEvent.remainderCalculation();
+    testList.addToList(res);
     if (res === 0n) {
         myNumberEvent.emit(`modulo`);
     }
     if (myNumberEvent.getNumerator() >= BigInt(Number.MAX_SAFE_INTEGER)) {
         myNumberEvent.emit(`intLimit`);
     }
-}, 0);
+}, 1000);
 process.nextTick(() => {
+    const timerObj = setInterval(() => {
+        process.stdout.write(`Process nextTick\n`);
+        testList.printList();
+    }, 1000);
 });
 /*
 https://medium.com/free-code-camp/testing-your-nodejs-applications-with-ava-js-99e806a226a7

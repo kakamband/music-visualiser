@@ -17,9 +17,9 @@ const del   = require("del");
 
 
 /* Folder destinations */
-const SRC_FOLD = "./Src";
-const TEST_FOLD = "./Test";
-const DIST_FOLD  = "./Src/Dist";
+const SRC_FOLD = "./src/server";
+const TEST_FOLD = "./test";
+const DIST_FOLD  = "./dist";
 const ROOT_FOLD  = "./";
 const JS_DOC_FOLD = "./JsDocs";
 
@@ -143,20 +143,6 @@ gulp.task('build', gulp.series(
 ));
 
 
-/* 
-    linting - linitng is actually really useful. I like linting. Should do more in the future
-    Linting essentially makes it that you see errors easier and have proper formatting technqiues
-    Lint can prevent debugging
-    To use tslint, you need to initalize tslint with:
-    tslint --init
-*/
-gulp.task(`tslint`, (done) => {
-    child_proc.exec(`tslint ${SrcPath('/**/*.ts')}`, {maxBuffer: 1024 * 1024000}, (error, sout, serr) => {
-        serr && console.error(serr);
-    }).stdout.pipe(process.stdout); /* pipes it to stdout */
-    done();
-});
-
 
 /* JSDoc - provides a premade documentation of your project. Nice to use for project management
     Example: jsdoc ./dist -r -d docs
@@ -228,7 +214,7 @@ const execTests = (done, testPath) => {
 
 
 gulp.task("ava", done => {
-    execTests(done, `./Src/Dist/Test/**`);
+    execTests(done, `./dist/test/**`);
 });
 
 

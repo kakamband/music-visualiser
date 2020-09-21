@@ -5,12 +5,12 @@
   "main": "App.js",
   "scripts": {
     "test": "gulp start",
-    "start": "tsc && node Src/Dist/Src/App.js",
-    "start-auto": "tsc && ts-node-dev Src/App.ts",
+    "start": "tsc && node dist/server/App.js",
+    "start-auto": "tsc && ts-node-dev src/server/App.ts",
     "tsc": "tsc",
-    "tests": "node ./node_modules/ava/cli.js ./Src/Dist/Test/*.test.js",
-    "tests-pretty": "node ./node_modules/ava/cli.js ./Src/Dist/Test/*.test.js --verbose",
-    "prettier-format": "prettier --config .prettierrc './Src/**/*.ts' --write",
+    "tests": "node ./node_modules/ava/cli.js ./dist/test/*.test.js",
+    "tests-pretty": "node ./node_modules/ava/cli.js ./dist/test/*.test.js --verbose",
+    "prettier-format": "prettier --config .prettierrc './src/server/**/*.ts' --write",
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix"
   },

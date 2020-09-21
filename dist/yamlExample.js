@@ -14,5 +14,5 @@ const yamlTest = () => {
     }
 };
 exports.yamlTest = yamlTest;
-/* gulp clean && gulp start && gulp ava */ 
+/* gulp clean && gulp start && gulp ava */
 //# sourceMappingURL=yamlExample.js.map

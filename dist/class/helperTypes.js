@@ -9,7 +9,6 @@ var OrderType;
     OrderType[OrderType["sell"] = 1] = "sell";
 })(OrderType || (OrderType = {}));
 exports.OrderType = OrderType;
-;
 /* Question determination for the BinanceExchange  menu  */
 var Input;
 (function (Input) {
@@ -17,11 +16,9 @@ var Input;
     Input[Input["exit"] = 2] = "exit";
     Input[Input["mainMenu"] = 3] = "mainMenu";
     Input[Input["orderInterest"] = 4] = "orderInterest";
-    Input[Input["resetTradePair"] = 5] = "resetTradePair";
+    Input[Input["resetTradePair"] = 5] = "resetTradePair"; /*future implementation */
 })(Input || (Input = {}));
 exports.Input = Input;
-;
-;
 /*export functions down below*/
 exports.PRICE = 0;
 exports.QUANT = 1;

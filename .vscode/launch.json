@@ -11,11 +11,10 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/Src/Dist/Src/App.js",
+            "program": "${workspaceFolder}/dist/App.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]
-
         }
     ]
 }

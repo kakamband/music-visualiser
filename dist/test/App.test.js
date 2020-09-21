@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const ava_1 = require("ava");
 //import {bigIntSum} from '@Src/App'
-const App_1 = require("../Src/App");
+const App_1 = require("../App");
 /* ava testing is essentially like model checking or an abstracted version of formal software engineering */
 ava_1.default('Test1: check if bitIntSum gives exepected output of the bigIntSum', t => {
     t.plan(2);

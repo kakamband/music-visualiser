@@ -1,26 +1,33 @@
 {
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
-
-
-    "target": "ES2020",                          /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', or 'es5' 'ESNEXT'. */
-    "module": "commonjs",                     /* Specify module code generation: 'none', 'commonjs', 'amd', */
-    "sourceMap": true,                    /* Generates corresponding '.map' file. This allows for debugging */
-    "outDir": "./Src/Dist",                        /* Redirect output structure to the directory. */
-    "strict": true,                           /* Enable all strict type-checking options. */
-    "baseUrl": "./",                       /* Base directory to resolve non-absolute module names. */
+    "target": "ES2020", /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', or 'es5' 'ESNEXT'. */
+    "module": "commonjs", /* Specify module code generation: 'none', 'commonjs', 'amd', */
+    "sourceMap": true, /* Generates corresponding '.map' file. This allows for debugging */
+    "outDir": "dist", /* Redirect output structure to the directory. */
+    "strict": true, /* Enable all strict type-checking options. */
+    "rootDir": "./src/server", /* Base directory to resolve non-absolute module names. */
+    "baseUrl": "./", /* needed to provide a reference to paths */
     "paths": {
       "*": [
-          "node_modules/*"
-      ], 
-      "@Src/*": ["Src/*"],
-      "@Env/*": ["Env/*"],
-      "@Class/*": ["Src/Class/*"]
-     },                        /* A series of entries which re-map imports to lookup locations relative to the 
-
-
+        "node_modules/*"
+      ],
+      "@Src/*": [
+        "src/*"
+      ],
+      "@Env/*": [
+        "Env/*"
+      ],
+      "@Class/*": [
+        "src/server/class/*"
+      ]
+    }, /* A series of entries which re-map imports to lookup locations relative to the 
     /* Advanced Options */
-    "skipLibCheck": true,                     /* Skip type checking of declaration files. */
-    "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
-  }
+    "skipLibCheck": true, /* Skip type checking of declaration files. */
+    "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
+  },
+  "exclude": [
+    "node_modules",
+    "./src/client/**", /* we don't want to compile the client stuff with the server stuff */
+  ],
 }

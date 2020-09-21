@@ -25,7 +25,7 @@ class NumberSumEvent extends events_1.EventEmitter {
         this.mQuotient.numerator = numerator;
     }
     setDenominator(denominator) {
-        (denominator !== 0n) ? this.mQuotient.denominator = denominator : undefined;
+        denominator !== 0n ? (this.mQuotient.denominator = denominator) : undefined;
     }
     setQuotient(quotient) {
         this.mQuotient = quotient;
@@ -35,5 +35,4 @@ class NumberSumEvent extends events_1.EventEmitter {
     }
 }
 exports.NumberSumEvent = NumberSumEvent;
-;
 //# sourceMappingURL=NumberSumEvent.js.map

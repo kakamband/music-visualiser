@@ -3,8 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // import orginalTestImport, { ExecutionContext, TestInterface } from 'ava';
 // import RSA, {PrimePair} from '../../Src/Class/rsa'
 const ava_1 = require("ava");
-const LinkedList_1 = require("../Src/Class/LinkedList");
-;
+const LinkedList_1 = require("../class/LinkedList");
 // const pqPairTest1: PrimePair = {
 //   p: 1,
 //   q: 2,

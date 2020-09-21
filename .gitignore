@@ -1,6 +1,7 @@
 node_modules
-/Src/Env/*
-/Src/Env/*.env
+/src/Env/*
+/src/Env/*.env
 /jsDocs/*
-Src/Config/*
+src/Config/*
 /proximaNotes.md
+/src/client/

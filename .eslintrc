@@ -13,6 +13,7 @@
     ],
     "rules": {
         "no-console": 1, // Means warning
+        "@typescript-eslint/no-unused-vars": 2, // 2 means error
         "@typescript-eslint/no-var-requires": 1 //override this to warning
         // "prettier/prettier": 2 // Means error
     }

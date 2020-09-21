@@ -123,7 +123,7 @@ gulp.task('clean', gulp.series(
 
 /* compile and run project */
 gulp.task("start", (done) => {
-    child_proc.exec(`npm run start`, {maxBuffer: 1024 * 1024000}, (error, sout, serr) => {
+    child_proc.exec(`npm run start-auto`, {maxBuffer: 1024 * 1024000}, (error, sout, serr) => {
     serr && console.error(serr);
     }).stdout.pipe(process.stdout);
 
@@ -174,7 +174,7 @@ gulp.task(`jsdoc`, (done) => {
 /*------------------------------------------------- Testing tasks ----------------------------------------------------------*/
 /*AVA */
 /* for AVA */
-const _AVA_ = `node ./node_modules/ava/cli.js`;
+const _AVA_ = `node ./node_modules/ava/cli.js --verbose`;
 let _TestCommand_ = _AVA_; /* AVA is a testing framework */
 
 

@@ -8,7 +8,7 @@ interface CustomInterface<Type>
 {
   linkedList: LinkedList<Type>;
   data: Type [];
-};
+}
 
 // const pqPairTest1: PrimePair = {
 //   p: 1,

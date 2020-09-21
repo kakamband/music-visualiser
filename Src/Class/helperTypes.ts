@@ -2,25 +2,25 @@
 
 /* the order book type you want to specify */
 enum OrderType {
-    buy,
-    sell,
-  };
+  buy,
+  sell
+}
 
-  /* Question determination for the BinanceExchange  menu  */
-  enum Input {
-    quantity = 1,
-    exit = 2,
-    mainMenu,
-    orderInterest,
-    resetTradePair, /*future implementation */
-  };
+/* Question determination for the BinanceExchange  menu  */
+enum Input {
+  quantity = 1,
+  exit = 2,
+  mainMenu,
+  orderInterest,
+  resetTradePair /*future implementation */
+}
 
-  interface TradePair {
-    base: string;
-    quote: string;
-  };
+interface TradePair {
+  base: string;
+  quote: string;
+}
 
-  /*export functions down below*/
-  export const PRICE: number = 0;
-  export const QUANT: number = 1;
-  export { Input, OrderType, TradePair };
+/*export functions down below*/
+export const PRICE = 0;
+export const QUANT = 1;
+export { Input, OrderType, TradePair };
